@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="OC中的内存空间分配   所有 Objective-C 对象创建之后的内存都分配在（heap sapce）中，不能再栈（stack）中分配对象  NSString *someString = @&quot;str&quot;; ```&amp;lt;p&amp;gt; &amp;gt;  声明了一个 sonmeString 的变量，这个变量分配在堆中的某块内存中；类型是 NSString * 说明是个指向 NSString 的指针，这个指针">
+<meta name="description" content="OC中的内存空间分配   所有 Objective-C 对象创建之后的内存都分配在（heap sapce）中，不能再栈（stack）中分配对象 NSString *someString = @&quot;str&quot;; ```&amp;lt;p&amp;gt;      声明了一个 sonmeString 的变量，这个变量分配在堆中的某块内存中；类型是 NSString * 说明是个指向 NSString 的指针，这个指针的内">
 <meta name="keywords" content="iOS">
 <meta property="og:type" content="article">
 <meta property="og:title" content="《Effective OC 2.0》第一章 熟悉Objective-C 总结">
 <meta property="og:url" content="http://yoursite.com/2019/06/24/《Effective OC 2.0》第一章 熟悉Objective-C 总结/index.html">
 <meta property="og:site_name" content="XV~&#39;s Blog">
-<meta property="og:description" content="OC中的内存空间分配   所有 Objective-C 对象创建之后的内存都分配在（heap sapce）中，不能再栈（stack）中分配对象  NSString *someString = @&quot;str&quot;; ```&amp;lt;p&amp;gt; &amp;gt;  声明了一个 sonmeString 的变量，这个变量分配在堆中的某块内存中；类型是 NSString * 说明是个指向 NSString 的指针，这个指针">
+<meta property="og:description" content="OC中的内存空间分配   所有 Objective-C 对象创建之后的内存都分配在（heap sapce）中，不能再栈（stack）中分配对象 NSString *someString = @&quot;str&quot;; ```&amp;lt;p&amp;gt;      声明了一个 sonmeString 的变量，这个变量分配在堆中的某块内存中；类型是 NSString * 说明是个指向 NSString 的指针，这个指针的内">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-06-24T16:51:06.777Z">
+<meta property="og:updated_time" content="2019-06-24T16:55:16.140Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="《Effective OC 2.0》第一章 熟悉Objective-C 总结">
-<meta name="twitter:description" content="OC中的内存空间分配   所有 Objective-C 对象创建之后的内存都分配在（heap sapce）中，不能再栈（stack）中分配对象  NSString *someString = @&quot;str&quot;; ```&amp;lt;p&amp;gt; &amp;gt;  声明了一个 sonmeString 的变量，这个变量分配在堆中的某块内存中；类型是 NSString * 说明是个指向 NSString 的指针，这个指针">
+<meta name="twitter:description" content="OC中的内存空间分配   所有 Objective-C 对象创建之后的内存都分配在（heap sapce）中，不能再栈（stack）中分配对象 NSString *someString = @&quot;str&quot;; ```&amp;lt;p&amp;gt;      声明了一个 sonmeString 的变量，这个变量分配在堆中的某块内存中；类型是 NSString * 说明是个指向 NSString 的指针，这个指针的内">
 
 
 
@@ -303,18 +303,21 @@
         <h3>OC中的内存空间分配</h3>
 
 <ul>
-<li><p>所有 Objective-C 对象创建之后的内存都分配在（heap sapce）中，不能再栈（stack）中分配对象 </p><p></p>
-<pre><code class="objc"><span class="built_in">NSString</span> *someString = <span class="string">@"str"</span>;
+<li>所有 Objective-C 对象创建之后的内存都分配在（heap sapce）中，不能再栈（stack）中分配对象 <p><pre><code class="objc"><span class="built_in">NSString</span> *someString = <span class="string">@"str"</span>;
 ```&lt;p&gt;
-&gt;  声明了一个 sonmeString 的变量，这个变量分配在堆中的某块内存中；类型是 <span class="built_in">NSString</span> * 说明是个指向 <span class="built_in">NSString</span> 的指针，这个指针的内存是分配在栈帧（stack frame），在<span class="number">32</span>位架构占<span class="number">4</span>字节，<span class="number">64</span>位占<span class="number">8</span>字节。</code></pre>
-</li>
-<li><p>int、float、double、char 等基本数据类型和结构体的内存分配在栈区。</p>
-</li>
+</code></pre>
+</p></li>
+</ul>
+<blockquote>
+<p> 声明了一个 sonmeString 的变量，这个变量分配在堆中的某块内存中；类型是 NSString * 说明是个指向 NSString 的指针，这个指针的内存是分配在栈帧（stack frame），在32位架构占4字节，64位占8字节。</p>
+</blockquote>
+<ul>
+<li>int、float、double、char 等基本数据类型和结构体的内存分配在栈区。</li>
 </ul>
 <h3>头文件引入</h3>
 
 <ul>
-<li>除非明确有必要，否则不要引入头文件。一般应该在.h文件中使用向前声明（@class），在.m文件中再 import 相应的头文件，这样可以尽量降低耦合。</li>
+<li>除非明确有必要，否则不要引入头文件。一般应该在 .h 文件中使用向前声明（@class），在 .m 文件中再 import 相应的头文件，这样可以尽量降低耦合。</li>
 <li>有时无法使用 @class ，比如声明某个类遵循一项协议。这种情况尽量把“该类遵循某协议”的这条声明移到分类（category）中。如果不行的话，就把协议单独放在一个头文件，然后再引入。</li>
 </ul>
 
