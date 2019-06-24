@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT">
+  <meta name="keywords" content="iOS,">
 
 
 
@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="记录 iOS 开发日常&amp;心得">
+<meta name="description" content="1. OC中的内存空间分配   所有 Objective-C 对象创建之后的内存都分配在(heap sapce)中，不能再栈中分配对象 1NSString *someString = @&quot;str&quot;">
 <meta name="keywords" content="iOS">
 <meta property="og:type" content="article">
 <meta property="og:title" content="《Effective OC 2.0》第一章 熟悉Objective-C 总结">
 <meta property="og:url" content="http://yoursite.com/2019/06/24/《Effective OC 2.0》第一章 熟悉Objective-C 总结/index.html">
 <meta property="og:site_name" content="XV~&#39;s Blog">
-<meta property="og:description" content="记录 iOS 开发日常&amp;心得">
+<meta property="og:description" content="1. OC中的内存空间分配   所有 Objective-C 对象创建之后的内存都分配在(heap sapce)中，不能再栈中分配对象 1NSString *someString = @&quot;str&quot;">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-06-24T15:42:03.479Z">
+<meta property="og:updated_time" content="2019-06-24T16:08:43.505Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="《Effective OC 2.0》第一章 熟悉Objective-C 总结">
-<meta name="twitter:description" content="记录 iOS 开发日常&amp;心得">
+<meta name="twitter:description" content="1. OC中的内存空间分配   所有 Objective-C 对象创建之后的内存都分配在(heap sapce)中，不能再栈中分配对象 1NSString *someString = @&quot;str&quot;">
 
 
 
@@ -300,7 +300,14 @@
       
 
       
-        
+        <h3>1. OC中的内存空间分配</h3>
+
+<ul>
+<li>所有 Objective-C 对象创建之后的内存都分配在(heap sapce)中，不能再栈中分配对象 <p><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">NSString *someString = @<span class="string">"str"</span></span><br></pre></td></tr></table></figure>
+
+</p></li>
+</ul>
+
       
     </div>
     
@@ -314,6 +321,12 @@
     
 
     <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/iOS/" rel="tag"># iOS</a>
+          
+        </div>
       
 
       
@@ -384,8 +397,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -413,7 +435,7 @@
               
               <div class="site-state-item site-state-tags">
                 
-                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-count">2</span>
                   <span class="site-state-item-name">标签</span>
                 
               </div>
@@ -436,6 +458,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#null"><span class="nav-number">1.</span> <span class="nav-text">1. OC中的内存空间分配</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
