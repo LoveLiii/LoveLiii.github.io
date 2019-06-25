@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="XV~&#39;s Blog">
 <meta property="og:description" content="OC中的内存空间分配   所有 Objective-C 对象创建之后的内存都分配在堆（heap sapce）中，不能在栈（stack）中分配对象1NSString *someString = @&quot;str&quot;;      声明了一个 sonmeString 的变量，这个变量分配在堆中的某块内存中；类型是 NSString * 说明是个指向 NSString 的指针，这个指针的内存是分配在栈帧（stac">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-06-25T03:59:30.903Z">
+<meta property="og:updated_time" content="2019-06-25T04:17:30.535Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="《Effective OC 2.0》第一章 熟悉Objective-C 总结">
 <meta name="twitter:description" content="OC中的内存空间分配   所有 Objective-C 对象创建之后的内存都分配在堆（heap sapce）中，不能在栈（stack）中分配对象1NSString *someString = @&quot;str&quot;;      声明了一个 sonmeString 的变量，这个变量分配在堆中的某块内存中；类型是 NSString * 说明是个指向 NSString 的指针，这个指针的内存是分配在栈帧（stac">
@@ -340,12 +340,21 @@
 <h3>多用类型常量，少用 #define 预处理</h3>
 
 <ul>
-<li><p>不要用预处理定义常量，使用 static const 在实现文件（.m）中定义只在编译单元内可见的常量，用 k 做前缀。</p>
-<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">static</span> <span class="keyword">const</span> <span class="built_in">NSTimeInterval</span> kAnimationDuration = <span class="number">0.3</span>;</span><br></pre></td></tr></table></figure>
+<li><p>不要用预处理定义常量，使用 <em>*static const</em> 在实现文件中定义只在编译单元内可见的常量，用 k 做前缀。</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// EOCAnimatedView.h</span></span><br><span class="line"><span class="keyword">static</span> <span class="keyword">const</span> <span class="built_in">NSTimeInterval</span> kAnimationDuration = <span class="number">0.3</span>;</span><br></pre></td></tr></table></figure>
 </li>
-<li><p>在头文件中使用extern来声明全局常量，并在实现文件中定义值，一般用类名做前缀。</p>
+<li><p>在头文件中使用 <strong>extern</strong> 来声明全局常量，并在实现文件中定义值，一般用类名做前缀。</p>
 <figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// EOCAnimatedView.h</span></span><br><span class="line"><span class="keyword">extern</span> <span class="keyword">const</span> <span class="built_in">NSTimeInterval</span> EOCAnimatedViewAnimationDuration;</span><br><span class="line"><span class="comment">// EOCAnimatedView.m</span></span><br><span class="line"><span class="keyword">const</span> <span class="built_in">NSTimeInterval</span> EOCAnimatedViewAnimationDuration = <span class="number">0.3</span>;</span><br></pre></td></tr></table></figure>
 
+</li>
+</ul>
+<h3>OC中的枚举</h3>
+
+<ul>
+<li><p>凡是需要以按位或操作来组合的枚举都应使用 NS_OPTIONS 定义，若不需要，则应使用 NS_ENUM 定义。</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="built_in">NS_OPTIONS</span>(<span class="built_in">NSUInteger</span>, <span class="built_in">NSDataSearchOptions</span>) &#123;</span><br><span class="line">    <span class="built_in">NSDataSearchBackwards</span> = <span class="number">1</span>UL &lt;&lt; <span class="number">0</span>,</span><br><span class="line">    <span class="built_in">NSDataSearchAnchored</span> = <span class="number">1</span>UL &lt;&lt; <span class="number">1</span></span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">typedef</span> <span class="built_in">NS_ENUM</span>(<span class="built_in">NSUInteger</span>, <span class="built_in">NSCalculationError</span>) &#123;</span><br><span class="line">    <span class="built_in">NSCalculationNoError</span> = <span class="number">0</span>,</span><br><span class="line">    <span class="built_in">NSCalculationLossOfPrecision</span>, <span class="comment">// Result lost precision</span></span><br><span class="line">    <span class="built_in">NSCalculationUnderflow</span>,       <span class="comment">// Result became 0</span></span><br><span class="line">    <span class="built_in">NSCalculationOverflow</span>,        <span class="comment">// Result exceeds possible representation</span></span><br><span class="line">    <span class="built_in">NSCalculationDivideByZero</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>switch 语句处理枚举类型时不要实现 default 分支，这样做的好处在于加入新枚举之后，编译器会提示开发者没有处理所以枚举。</p>
 </li>
 </ul>
 
@@ -509,7 +518,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#null"><span class="nav-number">1.</span> <span class="nav-text">OC中的内存空间分配</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#null"><span class="nav-number">2.</span> <span class="nav-text">头文件引入</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#null"><span class="nav-number">3.</span> <span class="nav-text">多用字面量语法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#null"><span class="nav-number">4.</span> <span class="nav-text">多用类型常量，少用 #define 预处理</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#null"><span class="nav-number">1.</span> <span class="nav-text">OC中的内存空间分配</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#null"><span class="nav-number">2.</span> <span class="nav-text">头文件引入</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#null"><span class="nav-number">3.</span> <span class="nav-text">多用字面量语法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#null"><span class="nav-number">4.</span> <span class="nav-text">多用类型常量，少用 #define 预处理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#null"><span class="nav-number">5.</span> <span class="nav-text">OC中的枚举</span></a></li></ol></div>
             
 
           </div>
