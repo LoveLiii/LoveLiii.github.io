@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="OC中的内存空间分配   所有 Objective-C 对象创建之后的内存都分配在堆（heap sapce）中，不能在栈（stack）中分配对象 1NSString *someString = @&quot;str&quot;;      声明了一个 sonmeString 的变量，这个变量分配在堆中的某块内存中；类型是 NSString * 说明是个指向 NSString 的指针，这个指针的内存是分配在栈帧（sta">
+<meta name="description" content="OC中的内存空间分配   所有 Objective-C 对象创建之后的内存都分配在堆（heap sapce）中，不能在栈（stack）中分配对象  1NSString *someString = @&quot;str&quot;;    声明了一个 sonmeString 的变量，这个变量分配在堆中的某块内存中；类型是 NSString * 说明是个指向 NSString 的指针，这个指针的内存是分配在栈帧（stac">
 <meta name="keywords" content="iOS">
 <meta property="og:type" content="article">
 <meta property="og:title" content="《Effective OC 2.0》第一章 熟悉Objective-C 总结">
 <meta property="og:url" content="http://yoursite.com/2019/06/24/《Effective OC 2.0》第一章 熟悉Objective-C 总结/index.html">
 <meta property="og:site_name" content="XV~&#39;s Blog">
-<meta property="og:description" content="OC中的内存空间分配   所有 Objective-C 对象创建之后的内存都分配在堆（heap sapce）中，不能在栈（stack）中分配对象 1NSString *someString = @&quot;str&quot;;      声明了一个 sonmeString 的变量，这个变量分配在堆中的某块内存中；类型是 NSString * 说明是个指向 NSString 的指针，这个指针的内存是分配在栈帧（sta">
+<meta property="og:description" content="OC中的内存空间分配   所有 Objective-C 对象创建之后的内存都分配在堆（heap sapce）中，不能在栈（stack）中分配对象  1NSString *someString = @&quot;str&quot;;    声明了一个 sonmeString 的变量，这个变量分配在堆中的某块内存中；类型是 NSString * 说明是个指向 NSString 的指针，这个指针的内存是分配在栈帧（stac">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-06-24T16:57:42.013Z">
+<meta property="og:updated_time" content="2019-06-25T03:07:43.543Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="《Effective OC 2.0》第一章 熟悉Objective-C 总结">
-<meta name="twitter:description" content="OC中的内存空间分配   所有 Objective-C 对象创建之后的内存都分配在堆（heap sapce）中，不能在栈（stack）中分配对象 1NSString *someString = @&quot;str&quot;;      声明了一个 sonmeString 的变量，这个变量分配在堆中的某块内存中；类型是 NSString * 说明是个指向 NSString 的指针，这个指针的内存是分配在栈帧（sta">
+<meta name="twitter:description" content="OC中的内存空间分配   所有 Objective-C 对象创建之后的内存都分配在堆（heap sapce）中，不能在栈（stack）中分配对象  1NSString *someString = @&quot;str&quot;;    声明了一个 sonmeString 的变量，这个变量分配在堆中的某块内存中；类型是 NSString * 说明是个指向 NSString 的指针，这个指针的内存是分配在栈帧（stac">
 
 
 
@@ -313,10 +313,10 @@
         <h3>OC中的内存空间分配</h3>
 
 <ul>
-<li>所有 Objective-C 对象创建之后的内存都分配在堆（heap sapce）中，不能在栈（stack）中分配对象 <p><figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">NSString</span> *someString = <span class="string">@"str"</span>;</span><br></pre></td></tr></table></figure>
-
-</p></li>
+<li>所有 Objective-C 对象创建之后的内存都分配在堆（heap sapce）中，不能在栈（stack）中分配对象</li>
 </ul>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">NSString</span> *someString = <span class="string">@"str"</span>;</span><br></pre></td></tr></table></figure>
+
 <blockquote>
 <p> 声明了一个 <strong>sonmeString</strong> 的变量，这个变量分配在<strong>堆</strong>中的某块内存中；类型是 NSString * 说明是个指向 NSString 的指针，这个指针的内存是分配在<strong>栈帧（stack frame）</strong>，在32位架构占4字节，64位占8字节。</p>
 </blockquote>
@@ -328,6 +328,11 @@
 <ul>
 <li>除非明确有必要，否则不要引入头文件。一般应该在 .h 文件中使用向前声明（@class），在 .m 文件中再 import 相应的头文件，这样可以尽量降低耦合。</li>
 <li>有时无法使用 @class ，比如声明某个类遵循一项协议。这种情况尽量把“该类遵循某协议”的这条声明移到分类（category）中。如果不行的话，就把协议单独放在一个头文件，然后再引入。</li>
+</ul>
+<h3>多用字面量语法</h3>
+
+<ul>
+<li>使用字面量语法创建字符串、字典、数组会更简洁。字面量语法创建字典和数组时如果有nil，会立即抛出异常，因此字面量语法更安全。</li>
 </ul>
 
       
@@ -490,7 +495,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#null"><span class="nav-number">1.</span> <span class="nav-text">OC中的内存空间分配</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#null"><span class="nav-number">2.</span> <span class="nav-text">头文件引入</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#null"><span class="nav-number">1.</span> <span class="nav-text">OC中的内存空间分配</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#null"><span class="nav-number">2.</span> <span class="nav-text">头文件引入</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#null"><span class="nav-number">3.</span> <span class="nav-text">多用字面量语法</span></a></li></ol></div>
             
 
           </div>
