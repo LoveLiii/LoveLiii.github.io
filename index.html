@@ -319,9 +319,13 @@
 
 Objective C 没有其他语言的命名空间机制，起名时需要加上前缀。
 Apple 保留了两个字母的前缀，所以我们自己的项目应该是三个字母的前缀。
+如果自己的项目引用了第三方库，则应该为其中的名称加上前缀。
+
+尽量使用不可变对象
 
 
-          
+使用属性时，默认是 read-wirte 
+          ...
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2019/06/28/《Effective OC 2.0》第三章 接口与 API 设计 总结/#more" rel="contents">

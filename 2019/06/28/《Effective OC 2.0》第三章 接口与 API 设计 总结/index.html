@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="避免命名空间冲突   Objective C 没有其他语言的命名空间机制，起名时需要加上前缀。 Apple 保留了两个字母的前缀，所以我们自己的项目应该是三个字母的前缀。">
+<meta name="description" content="避免命名空间冲突   Objective C 没有其他语言的命名空间机制，起名时需要加上前缀。 Apple 保留了两个字母的前缀，所以我们自己的项目应该是三个字母的前缀。 如果自己的项目引用了第三方库，则应该为其中的名称加上前缀。  尽量使用不可变对象   使用属性时，默认是 read-wirte 可读可写的，如果数据不需要改变，则应声明为 readonly 只读。 只读属性还是可以通过 KVC">
 <meta name="keywords" content="iOS">
 <meta property="og:type" content="article">
 <meta property="og:title" content="《Effective OC 2.0》第三章 接口与 API 设计 总结.">
 <meta property="og:url" content="http://yoursite.com/2019/06/28/《Effective OC 2.0》第三章 接口与 API 设计 总结/index.html">
 <meta property="og:site_name" content="XV~&#39;s Blog">
-<meta property="og:description" content="避免命名空间冲突   Objective C 没有其他语言的命名空间机制，起名时需要加上前缀。 Apple 保留了两个字母的前缀，所以我们自己的项目应该是三个字母的前缀。">
+<meta property="og:description" content="避免命名空间冲突   Objective C 没有其他语言的命名空间机制，起名时需要加上前缀。 Apple 保留了两个字母的前缀，所以我们自己的项目应该是三个字母的前缀。 如果自己的项目引用了第三方库，则应该为其中的名称加上前缀。  尽量使用不可变对象   使用属性时，默认是 read-wirte 可读可写的，如果数据不需要改变，则应声明为 readonly 只读。 只读属性还是可以通过 KVC">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-07-11T07:27:28.043Z">
+<meta property="og:updated_time" content="2019-07-11T07:58:53.590Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="《Effective OC 2.0》第三章 接口与 API 设计 总结.">
-<meta name="twitter:description" content="避免命名空间冲突   Objective C 没有其他语言的命名空间机制，起名时需要加上前缀。 Apple 保留了两个字母的前缀，所以我们自己的项目应该是三个字母的前缀。">
+<meta name="twitter:description" content="避免命名空间冲突   Objective C 没有其他语言的命名空间机制，起名时需要加上前缀。 Apple 保留了两个字母的前缀，所以我们自己的项目应该是三个字母的前缀。 如果自己的项目引用了第三方库，则应该为其中的名称加上前缀。  尽量使用不可变对象   使用属性时，默认是 read-wirte 可读可写的，如果数据不需要改变，则应声明为 readonly 只读。 只读属性还是可以通过 KVC">
 
 
 
@@ -315,6 +315,34 @@
 <ul>
 <li>Objective C 没有其他语言的命名空间机制，起名时需要加上前缀。</li>
 <li>Apple 保留了两个字母的前缀，所以我们自己的项目应该是三个字母的前缀。</li>
+<li>如果自己的项目引用了第三方库，则应该为其中的名称加上前缀。</li>
+</ul>
+<h3>尽量使用不可变对象</h3>
+
+<ul>
+<li>使用属性时，默认是 read-wirte 可读可写的，如果数据不需要改变，则应声明为 readonly 只读。</li>
+<li>只读属性还是可以通过 KVC 机制改动。</li>
+<li>如果属性只可以在对象内部修改，则在分类中将其 readonly 属性扩展为 rendwrite。</li>
+<li>不要把可变的集合类型作为属性公开，而是应该提供相关方法，以此来修改。</li>
+</ul>
+<h3>命名规范</h3>
+
+<ul>
+<li>起名时应遵从 OC 的命名规范。</li>
+<li>方法名不要使用缩略后的类型名称。</li>
+<li>给私有方法加上前缀，这样可以同公共方法区分，方便调试。</li>
+<li>苹果公司预留了单用一个下划线做私有方法的前缀。</li>
+</ul>
+<h3>NSCopying 协议</h3>
+
+<ul>
+<li><p>自定义的对象需要具有拷贝功能时，需要实现 NSCopying 协议.</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">- (<span class="keyword">id</span>)copyWithZone:(<span class="built_in">NSZone</span> *)zone;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>若需要分可变与不可变，则要同时实现 NSCopying 和 NSMutableCopying 协议。</p>
+</li>
+<li><p>一般情况尽量使用浅拷贝。</p>
+</li>
 </ul>
 
       
@@ -477,7 +505,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#null"><span class="nav-number">1.</span> <span class="nav-text">避免命名空间冲突</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#null"><span class="nav-number">1.</span> <span class="nav-text">避免命名空间冲突</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#null"><span class="nav-number">2.</span> <span class="nav-text">尽量使用不可变对象</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#null"><span class="nav-number">3.</span> <span class="nav-text">命名规范</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#null"><span class="nav-number">4.</span> <span class="nav-text">NSCopying 协议</span></a></li></ol></div>
             
 
           </div>
