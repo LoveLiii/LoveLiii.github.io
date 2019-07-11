@@ -87,14 +87,14 @@
 <meta property="og:site_name" content="XV~&#39;s Blog">
 <meta property="og:description" content="OC中的属性   在对象之外访问实例变量，总是应该通过属性来做。在对象内部，除几种特殊情况，在读取实例变量的时候采用直接访问，设置的时候通过属性来做。 在初始化和 delloc 方法中，总是应该通过实例变量来读写数据。 懒加载初始化，需要通过属性来读取数据。  对象同等性   == 比较的是两个指针本身，而不是所指的对象。 若要检测对象的等同性，需要提供 isEqual 和 hash 方法。 相同">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/6082051-434d82bcea61a394.png">
+<meta property="og:image" content="http://api.cocoachina.com/uploads//20171026/1508991788735812.png">
 <meta property="og:image" content="https://upload-images.jianshu.io/upload_images/6082051-10d6c733467aac32.png">
 <meta property="og:image" content="https://upload-images.jianshu.io/upload_images/6082051-89c86615a0f9f2ef.png">
-<meta property="og:updated_time" content="2019-07-11T07:02:16.947Z">
+<meta property="og:updated_time" content="2019-07-11T07:08:10.218Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="《Effective OC 2.0》第二章 对象、消息、运行期 总结">
 <meta name="twitter:description" content="OC中的属性   在对象之外访问实例变量，总是应该通过属性来做。在对象内部，除几种特殊情况，在读取实例变量的时候采用直接访问，设置的时候通过属性来做。 在初始化和 delloc 方法中，总是应该通过实例变量来读写数据。 懒加载初始化，需要通过属性来读取数据。  对象同等性   == 比较的是两个指针本身，而不是所指的对象。 若要检测对象的等同性，需要提供 isEqual 和 hash 方法。 相同">
-<meta name="twitter:image" content="https://upload-images.jianshu.io/upload_images/6082051-434d82bcea61a394.png">
+<meta name="twitter:image" content="http://api.cocoachina.com/uploads//20171026/1508991788735812.png">
 
 
 
@@ -340,10 +340,13 @@
 </blockquote>
 <h3>消息转发机制</h3>
 
-<p><img src="https://upload-images.jianshu.io/upload_images/6082051-434d82bcea61a394.png" alt="runtime"></p>
+<p><img src="http://api.cocoachina.com/uploads//20171026/1508991788735812.png" alt="runtime"></p>
 <h3>类对象</h3>
-* Objective-C类是由Class类型来表示的，它实际上是一个指向objc_class结构体的指针
-![runtime](https://upload-images.jianshu.io/upload_images/6082051-1401ab09a66531b1.png)
+
+<ul>
+<li>Objective-C类是由Class类型来表示的，它实际上是一个指向objc_class结构体的指针</li>
+</ul>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">struct</span> objc_class &#123;</span><br><span class="line">    Class _Nonnull isa  OBJC_ISA_AVAILABILITY;</span><br><span class="line"></span><br><span class="line"><span class="meta">#if !__OBJC2__</span></span><br><span class="line">    Class _Nullable super_class                              OBJC2_UNAVAILABLE;</span><br><span class="line">    <span class="keyword">const</span> <span class="keyword">char</span> * _Nonnull name                               OBJC2_UNAVAILABLE;</span><br><span class="line">    <span class="keyword">long</span> version                                             OBJC2_UNAVAILABLE;</span><br><span class="line">    <span class="keyword">long</span> info                                                OBJC2_UNAVAILABLE;</span><br><span class="line">    <span class="keyword">long</span> instance_size                                       OBJC2_UNAVAILABLE;</span><br><span class="line">    <span class="keyword">struct</span> objc_ivar_list * _Nullable ivars                  OBJC2_UNAVAILABLE;</span><br><span class="line">    <span class="keyword">struct</span> objc_method_list * _Nullable * _Nullable methodLists                    OBJC2_UNAVAILABLE;</span><br><span class="line">    <span class="keyword">struct</span> objc_cache * _Nonnull cache                       OBJC2_UNAVAILABLE;</span><br><span class="line">    <span class="keyword">struct</span> objc_protocol_list * _Nullable protocols          OBJC2_UNAVAILABLE;</span><br><span class="line"><span class="meta">#endif</span></span><br><span class="line"></span><br><span class="line">&#125; OBJC2_UNAVAILABLE;</span><br><span class="line"><span class="comment">/* Use `Class` instead of `struct objc_class *` */</span></span><br></pre></td></tr></table></figure>
 
 <blockquote>
 <p>类对象中的元数据存储的都是如何创建一个实例的相关信息，就是从isa指针指向的结构体创建，类对象的isa指针指向的我们称之为元类(metaclass)<br>元类中保存了创建类对象以及类方法所需的所有信息，因此整个结构应该如下图所示:</p>
