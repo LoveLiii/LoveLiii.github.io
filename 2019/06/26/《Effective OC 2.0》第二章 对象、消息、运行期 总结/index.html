@@ -89,8 +89,8 @@
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://api.cocoachina.com/uploads//20171026/1508991788735812.png">
 <meta property="og:image" content="https://upload-images.jianshu.io/upload_images/6082051-10d6c733467aac32.png">
-<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/6082051-89c86615a0f9f2ef.png">
-<meta property="og:updated_time" content="2019-07-11T07:08:10.218Z">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/1330553-81f64a11ad20c764.png?imageMogr2/auto-orient/strip%7CimageView2/2">
+<meta property="og:updated_time" content="2019-07-11T07:13:57.523Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="《Effective OC 2.0》第二章 对象、消息、运行期 总结">
 <meta name="twitter:description" content="OC中的属性   在对象之外访问实例变量，总是应该通过属性来做。在对象内部，除几种特殊情况，在读取实例变量的时候采用直接访问，设置的时候通过属性来做。 在初始化和 delloc 方法中，总是应该通过实例变量来读写数据。 懒加载初始化，需要通过属性来读取数据。  对象同等性   == 比较的是两个指针本身，而不是所指的对象。 若要检测对象的等同性，需要提供 isEqual 和 hash 方法。 相同">
@@ -355,7 +355,7 @@
 <blockquote>
 <p>struct objc_object结构体它的isa指针指向类对象；<br>类对象的isa指针指向了元类；<br>super_class指针指向了父类的类对象；<br>而元类的super_class指针指向了父类的元类；</p>
 </blockquote>
-<p><img src="https://upload-images.jianshu.io/upload_images/6082051-89c86615a0f9f2ef.png" alt="runtime"></p>
+<p><img src="https://upload-images.jianshu.io/upload_images/1330553-81f64a11ad20c764.png?imageMogr2/auto-orient/strip%7CimageView2/2" alt="runtime"></p>
 <ul>
 <li>如果对象类型无法再编译器确定，那么应该用类型信息查询方法来检视类的继承体系。<br><strong>isMemberOfClass:</strong> 能够判断对象是否是某个特定类的实例。<strong>isKindOfClass:</strong> 则能够判断出对象是否为某类或其派生类的实例</li>
 </ul>
