@@ -79,21 +79,18 @@
 
 
 
-<meta name="description" content="OC中的属性   在对象之外访问实例变量，总是应该通过属性来做。在对象内部，除几种特殊情况，在读取实例变量的时候采用直接访问，设置的时候通过属性来做。 在初始化和 delloc 方法中，总是应该通过实例变量来读写数据。 懒加载初始化，需要通过属性来读取数据。  对象同等性   == 比较的是两个指针本身，而不是所指的对象。 若要检测对象的等同性，需要提供 isEqual 和 hash 方法。 相同">
+<meta name="description" content="使用分类打散代码   使用分类机制把类的实现代码划分成易于管理的小块。 将私有的方法归入叫 Private 的分类中，以便隐藏细节。  为第三方的分类加上前缀   分类中的方法会覆盖本类的同名方法，所以应该想第三分类添加分类时，总应该加上专用的前缀。  分类中不要声明属性   把封装数据的全部属性都定义在主接口中 在 class-continuation分类 之外的其他分类中，可以定义存取方法，但">
 <meta name="keywords" content="iOS">
 <meta property="og:type" content="article">
-<meta property="og:title" content="《Effective OC 2.0》第二章 对象、消息、运行期 总结">
-<meta property="og:url" content="http://yoursite.com/2019/06/26/《Effective OC 2.0》第二章 对象、消息、运行期 总结/index.html">
+<meta property="og:title" content="《Effective OC 2.0》第四章 协议与分类 总结">
+<meta property="og:url" content="http://yoursite.com/2019/07/01/《Effective OC 2.0》第四章 协议与分类 总结/index.html">
 <meta property="og:site_name" content="XV~&#39;s Blog">
-<meta property="og:description" content="OC中的属性   在对象之外访问实例变量，总是应该通过属性来做。在对象内部，除几种特殊情况，在读取实例变量的时候采用直接访问，设置的时候通过属性来做。 在初始化和 delloc 方法中，总是应该通过实例变量来读写数据。 懒加载初始化，需要通过属性来读取数据。  对象同等性   == 比较的是两个指针本身，而不是所指的对象。 若要检测对象的等同性，需要提供 isEqual 和 hash 方法。 相同">
+<meta property="og:description" content="使用分类打散代码   使用分类机制把类的实现代码划分成易于管理的小块。 将私有的方法归入叫 Private 的分类中，以便隐藏细节。  为第三方的分类加上前缀   分类中的方法会覆盖本类的同名方法，所以应该想第三分类添加分类时，总应该加上专用的前缀。  分类中不要声明属性   把封装数据的全部属性都定义在主接口中 在 class-continuation分类 之外的其他分类中，可以定义存取方法，但">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://api.cocoachina.com/uploads//20171026/1508991788735812.png">
-<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/1330553-81f64a11ad20c764.png?imageMogr2/auto-orient/strip%7CimageView2/2">
-<meta property="og:updated_time" content="2019-07-12T15:53:55.929Z">
+<meta property="og:updated_time" content="2019-07-11T09:15:22.379Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="《Effective OC 2.0》第二章 对象、消息、运行期 总结">
-<meta name="twitter:description" content="OC中的属性   在对象之外访问实例变量，总是应该通过属性来做。在对象内部，除几种特殊情况，在读取实例变量的时候采用直接访问，设置的时候通过属性来做。 在初始化和 delloc 方法中，总是应该通过实例变量来读写数据。 懒加载初始化，需要通过属性来读取数据。  对象同等性   == 比较的是两个指针本身，而不是所指的对象。 若要检测对象的等同性，需要提供 isEqual 和 hash 方法。 相同">
-<meta name="twitter:image" content="http://api.cocoachina.com/uploads//20171026/1508991788735812.png">
+<meta name="twitter:title" content="《Effective OC 2.0》第四章 协议与分类 总结">
+<meta name="twitter:description" content="使用分类打散代码   使用分类机制把类的实现代码划分成易于管理的小块。 将私有的方法归入叫 Private 的分类中，以便隐藏细节。  为第三方的分类加上前缀   分类中的方法会覆盖本类的同名方法，所以应该想第三分类添加分类时，总应该加上专用的前缀。  分类中不要声明属性   把封装数据的全部属性都定义在主接口中 在 class-continuation分类 之外的其他分类中，可以定义存取方法，但">
 
 
 
@@ -123,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2019/06/26/《Effective OC 2.0》第二章 对象、消息、运行期 总结/">
+  <link rel="canonical" href="http://yoursite.com/2019/07/01/《Effective OC 2.0》第四章 协议与分类 总结/">
 
 
 
 
 
-  <title>《Effective OC 2.0》第二章 对象、消息、运行期 总结 | XV~'s Blog</title>
+  <title>《Effective OC 2.0》第四章 协议与分类 总结 | XV~'s Blog</title>
   
 
 
@@ -246,7 +243,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/26/《Effective OC 2.0》第二章 对象、消息、运行期 总结/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/07/01/《Effective OC 2.0》第四章 协议与分类 总结/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="XV~">
@@ -263,7 +260,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">《Effective OC 2.0》第二章 对象、消息、运行期 总结</h1>
+          <h1 class="post-title" itemprop="name headline">《Effective OC 2.0》第四章 协议与分类 总结</h1>
         
 
         <div class="post-meta">
@@ -275,8 +272,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-06-26T12:19:31+08:00">
-                2019-06-26
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-07-01T19:30:45+08:00">
+                2019-07-01
               </time>
             
 
@@ -313,49 +310,30 @@
       
 
       
-        <h3>OC中的属性</h3>
+        <h3>使用分类打散代码</h3>
 
 <ul>
-<li>在对象之外访问实例变量，总是应该通过属性来做。在对象内部，除几种特殊情况，在读取实例变量的时候采用直接访问，设置的时候通过属性来做。</li>
-<li>在初始化和 delloc 方法中，总是应该通过实例变量来读写数据。</li>
-<li>懒加载初始化，需要通过属性来读取数据。</li>
+<li>使用分类机制把类的实现代码划分成易于管理的小块。</li>
+<li>将私有的方法归入叫 <strong>Private</strong> 的分类中，以便隐藏细节。</li>
 </ul>
-<h3>对象同等性</h3>
+<h3>为第三方的分类加上前缀</h3>
 
 <ul>
-<li>== 比较的是两个指针本身，而不是所指的对象。</li>
-<li>若要检测对象的等同性，需要提供 isEqual 和 hash 方法。</li>
-<li>相同的对象必须具有相同的哈希码，两个相同哈希码的对象却未必相同。</li>
+<li>分类中的方法会覆盖本类的同名方法，所以应该想第三分类添加分类时，总应该加上专用的前缀。</li>
 </ul>
-<h3>类簇模式</h3>
+<h3>分类中不要声明属性</h3>
 
 <ul>
-<li>类簇模式可以把实现细节隐藏在公共接口后面<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">+(<span class="built_in">UIButton</span> *)buttonWithType:(<span class="built_in">UIButtonType</span>)type;</span><br><span class="line"><span class="comment">//这个方法返回的对象取决于传入的 buttonType</span></span><br></pre></td></tr></table></figure>
-
-</li>
+<li>把封装数据的全部属性都定义在主接口中</li>
+<li>在 <strong>class-continuation分类</strong> 之外的其他分类中，可以定义存取方法，但尽量不要定义属性。</li>
 </ul>
-<h3>消息转发机制</h3>
-
-<p><img src="http://api.cocoachina.com/uploads//20171026/1508991788735812.png" alt="runtime"></p>
-<h3>类对象</h3>
+<h3>class-continuation分类</h3>
 
 <ul>
-<li>Objective-C类是由Class类型来表示的，它实际上是一个指向objc_class结构体的指针<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">objc_class</span> &#123;</span></span><br><span class="line">    Class _Nonnull isa  OBJC_ISA_AVAILABILITY;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">if</span> !__OBJC2__</span></span><br><span class="line">    Class _Nullable super_class                              OBJC2_UNAVAILABLE;</span><br><span class="line">    <span class="keyword">const</span> <span class="keyword">char</span> * _Nonnull name                               OBJC2_UNAVAILABLE;</span><br><span class="line">    <span class="keyword">long</span> version                                             OBJC2_UNAVAILABLE;</span><br><span class="line">    <span class="keyword">long</span> info                                                OBJC2_UNAVAILABLE;</span><br><span class="line">    <span class="keyword">long</span> instance_size                                       OBJC2_UNAVAILABLE;</span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">objc_ivar_list</span> * _<span class="title">Nullable</span> <span class="title">ivars</span>                  <span class="title">OBJC2_UNAVAILABLE</span>;</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">objc_method_list</span> * _<span class="title">Nullable</span> * _<span class="title">Nullable</span> <span class="title">methodLists</span>                    <span class="title">OBJC2_UNAVAILABLE</span>;</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">objc_cache</span> * _<span class="title">Nonnull</span> <span class="title">cache</span>                       <span class="title">OBJC2_UNAVAILABLE</span>;</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">objc_protocol_list</span> * _<span class="title">Nullable</span> <span class="title">protocols</span>          <span class="title">OBJC2_UNAVAILABLE</span>;</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br><span class="line"></span><br><span class="line">&#125; OBJC2_UNAVAILABLE;</span><br><span class="line"><span class="comment">/* Use `Class` instead of `struct objc_class *` */</span></span><br></pre></td></tr></table></figure>
-
-</li>
-</ul>
-<blockquote>
-<p>类对象中的元数据存储的都是如何创建一个实例的相关信息，就是从isa指针指向的结构体创建，类对象的isa指针指向的我们称之为元类(metaclass)</p>
-</blockquote>
-<blockquote>
-<p>元类中保存了创建类对象以及类方法所需的所有信息</p>
-</blockquote>
-<blockquote>
-<p>struct objc_object结构体它的isa指针指向类对象；<br>类对象的isa指针指向了元类；<br>super_class指针指向了父类的类对象；<br>而元类的super_class指针指向了父类的元类；</p>
-</blockquote>
-<p><img src="https://upload-images.jianshu.io/upload_images/1330553-81f64a11ad20c764.png?imageMogr2/auto-orient/strip%7CimageView2/2" alt="runtime"></p>
-<ul>
-<li>如果对象类型无法再编译器确定，那么应该用类型信息查询方法来检视类的继承体系。<br><strong>isMemberOfClass:</strong> 能够判断对象是否是某个特定类的实例。<strong>isKindOfClass:</strong> 则能够判断出对象是否为某类或其派生类的实例</li>
+<li>class-continuation分类和普通分类不同，它必须定义在其所接续的那个类的实现文件里，这是唯一能声明实例变量的分类，这个分类没有特定的实现文件，其中的方法都应该定义在类的实现文件里。class-continuation分类没有名字。</li>
+<li>通过“class-continuation分类”向类中新增实例变量。</li>
+<li>如果某属性在主接口中声明为“只读”，而类的内部又要用设置方法修改此属性，那么就在“class-continuation分类”中将其扩展为“可读写”。</li>
+<li>若想使类所遵循的协议不为人所知，则可于“class-continuation分类”中声明。</li>
 </ul>
 
       
@@ -387,8 +365,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/06/24/《Effective OC 2.0》第一章 熟悉Objective-C 总结/" rel="next" title="《Effective OC 2.0》第一章 熟悉Objective-C 总结">
-                <i class="fa fa-chevron-left"></i> 《Effective OC 2.0》第一章 熟悉Objective-C 总结
+              <a href="/2019/06/28/《Effective OC 2.0》第三章 接口与 API 设计 总结/" rel="next" title="《Effective OC 2.0》第三章 接口与 API 设计 总结">
+                <i class="fa fa-chevron-left"></i> 《Effective OC 2.0》第三章 接口与 API 设计 总结
               </a>
             
           </div>
@@ -397,8 +375,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2019/06/28/《Effective OC 2.0》第三章 接口与 API 设计 总结/" rel="prev" title="《Effective OC 2.0》第三章 接口与 API 设计 总结">
-                《Effective OC 2.0》第三章 接口与 API 设计 总结 <i class="fa fa-chevron-right"></i>
+              <a href="/2019/07/03/《Effective OC 2.0》第五章 内存管理 总结/" rel="prev" title="《Effective OC 2.0》第五章 内存管理 总结">
+                《Effective OC 2.0》第五章 内存管理 总结 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -522,7 +500,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#null"><span class="nav-number">1.</span> <span class="nav-text">OC中的属性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#null"><span class="nav-number">2.</span> <span class="nav-text">对象同等性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#null"><span class="nav-number">3.</span> <span class="nav-text">类簇模式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#null"><span class="nav-number">4.</span> <span class="nav-text">消息转发机制</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#null"><span class="nav-number">5.</span> <span class="nav-text">类对象</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#null"><span class="nav-number">1.</span> <span class="nav-text">使用分类打散代码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#null"><span class="nav-number">2.</span> <span class="nav-text">为第三方的分类加上前缀</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#null"><span class="nav-number">3.</span> <span class="nav-text">分类中不要声明属性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#null"><span class="nav-number">4.</span> <span class="nav-text">class-continuation分类</span></a></li></ol></div>
             
 
           </div>

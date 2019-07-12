@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="OC中的内存空间分配   所有 Objective-C 对象创建之后的内存都分配在堆（heap sapce）中，不能在栈（stack）中分配对象1NSString *someString = @&quot;str&quot;;      声明了一个 sonmeString 的变量，这个变量分配在堆中的某块内存中；类型是 NSString * 说明是个指向 NSString 的指针，这个指针的内存是分配在栈帧（stac">
+<meta name="description" content="OC中的内存空间分配   所有 Objective-C 对象创建之后的内存都分配在堆（heap sapce）中，不能在栈（stack）中分配对象。1NSString *someString = @&quot;str&quot;;      声明了一个 sonmeString 的变量，这个变量分配在堆中的某块内存中；类型是 NSString * 说明是个指向 NSString 的指针，这个指针的内存是分配在栈帧（sta">
 <meta name="keywords" content="iOS">
 <meta property="og:type" content="article">
 <meta property="og:title" content="《Effective OC 2.0》第一章 熟悉Objective-C 总结">
 <meta property="og:url" content="http://yoursite.com/2019/06/24/《Effective OC 2.0》第一章 熟悉Objective-C 总结/index.html">
 <meta property="og:site_name" content="XV~&#39;s Blog">
-<meta property="og:description" content="OC中的内存空间分配   所有 Objective-C 对象创建之后的内存都分配在堆（heap sapce）中，不能在栈（stack）中分配对象1NSString *someString = @&quot;str&quot;;      声明了一个 sonmeString 的变量，这个变量分配在堆中的某块内存中；类型是 NSString * 说明是个指向 NSString 的指针，这个指针的内存是分配在栈帧（stac">
+<meta property="og:description" content="OC中的内存空间分配   所有 Objective-C 对象创建之后的内存都分配在堆（heap sapce）中，不能在栈（stack）中分配对象。1NSString *someString = @&quot;str&quot;;      声明了一个 sonmeString 的变量，这个变量分配在堆中的某块内存中；类型是 NSString * 说明是个指向 NSString 的指针，这个指针的内存是分配在栈帧（sta">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-06-25T14:26:18.135Z">
+<meta property="og:updated_time" content="2019-07-12T15:51:20.674Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="《Effective OC 2.0》第一章 熟悉Objective-C 总结">
-<meta name="twitter:description" content="OC中的内存空间分配   所有 Objective-C 对象创建之后的内存都分配在堆（heap sapce）中，不能在栈（stack）中分配对象1NSString *someString = @&quot;str&quot;;      声明了一个 sonmeString 的变量，这个变量分配在堆中的某块内存中；类型是 NSString * 说明是个指向 NSString 的指针，这个指针的内存是分配在栈帧（stac">
+<meta name="twitter:description" content="OC中的内存空间分配   所有 Objective-C 对象创建之后的内存都分配在堆（heap sapce）中，不能在栈（stack）中分配对象。1NSString *someString = @&quot;str&quot;;      声明了一个 sonmeString 的变量，这个变量分配在堆中的某块内存中；类型是 NSString * 说明是个指向 NSString 的指针，这个指针的内存是分配在栈帧（sta">
 
 
 
@@ -313,7 +313,7 @@
         <h3>OC中的内存空间分配</h3>
 
 <ul>
-<li>所有 Objective-C 对象创建之后的内存都分配在堆（heap sapce）中，不能在栈（stack）中分配对象<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">NSString</span> *someString = <span class="string">@"str"</span>;</span><br></pre></td></tr></table></figure>
+<li>所有 Objective-C 对象创建之后的内存都分配在堆（heap sapce）中，不能在栈（stack）中分配对象。<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">NSString</span> *someString = <span class="string">@"str"</span>;</span><br></pre></td></tr></table></figure>
 
 </li>
 </ul>
@@ -333,7 +333,7 @@
 
 <ul>
 <li>使用字面量语法创建字符串、字典、数组会更简洁。字面量语法创建字典和数组时如果有nil，会立即抛出异常，因此字面量语法更安全。</li>
-<li>使用字面量语法创建出来的字符串、字典、数组都是不可变的。若要成为可变的，需要复制一份<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">NSMutableArray</span> *<span class="keyword">mutable</span> = [@[@<span class="number">1</span>, @<span class="number">2</span>, @<span class="number">3</span>] mutableCopy];</span><br></pre></td></tr></table></figure>
+<li>使用字面量语法创建出来的字符串、字典、数组都是不可变的。若要成为可变的，需要复制一份。<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">NSMutableArray</span> *<span class="keyword">mutable</span> = [@[@<span class="number">1</span>, @<span class="number">2</span>, @<span class="number">3</span>] mutableCopy];</span><br></pre></td></tr></table></figure>
 
 </li>
 </ul>
@@ -472,7 +472,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-count">6</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>

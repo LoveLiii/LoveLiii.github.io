@@ -243,6 +243,414 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/07/07/《Effective OC 2.0》第六章 块(Block)和大中枢派发(GCD) 总结/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="XV~">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="XV~'s Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/07/07/《Effective OC 2.0》第六章 块(Block)和大中枢派发(GCD) 总结/" itemprop="url">《Effective OC 2.0》第六章 块(Block)和大中枢派发(GCD) 总结</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-07-07T17:30:12+08:00">
+                2019-07-07
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+          理解块(Block)的概念
+
+
+默认情况 Block 捕获的变量是不可以在其内部修改的，如果加上 __block 关键字，这样就可以修改了。
+self 也是个对象，Block 捕获的时候也会将其持有。如果 self 所指的那个对象同时也持有了 Block ,那么就会出现循环引用。
+在 Block 直
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2019/07/07/《Effective OC 2.0》第六章 块(Block)和大中枢派发(GCD) 总结/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/07/03/《Effective OC 2.0》第五章 内存管理 总结/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="XV~">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="XV~'s Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/07/03/《Effective OC 2.0》第五章 内存管理 总结/" itemprop="url">《Effective OC 2.0》第五章 内存管理 总结</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-07-03T12:20:20+08:00">
+                2019-07-03
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+          理解引用计数
+
+
+属性存取中的内存管理(MRC)12345- (void)setFoo:(id)foo &#123;	[foo retain];	[_foo release];	_foo = foo; &#125;
+
+
+
+
+此方法先保留新值，并释放旧值，然后更新实例变量，另其指向新值。
+
+
+引用计数
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2019/07/03/《Effective OC 2.0》第五章 内存管理 总结/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/07/01/《Effective OC 2.0》第四章 协议与分类 总结/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="XV~">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="XV~'s Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/07/01/《Effective OC 2.0》第四章 协议与分类 总结/" itemprop="url">《Effective OC 2.0》第四章 协议与分类 总结</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-07-01T19:30:45+08:00">
+                2019-07-01
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+          使用分类打散代码
+
+
+使用分类机制把类的实现代码划分成易于管理的小块。
+将私有的方法归入叫 Private 的分类中，以便隐藏细节。
+
+为第三方的分类加上前缀
+
+
+分类中的方法会覆盖本类的同名方法，所以应该想第三分类添加分类时，总应该加上专用的前缀。
+
+分类中不要声明属性
+
+
+把封装数据的全部属性都
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2019/07/01/《Effective OC 2.0》第四章 协议与分类 总结/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/28/《Effective OC 2.0》第三章 接口与 API 设计 总结/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -262,7 +670,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2019/06/28/《Effective OC 2.0》第三章 接口与 API 设计 总结/" itemprop="url">《Effective OC 2.0》第三章 接口与 API 设计 总结.</a></h1>
+                <a class="post-title-link" href="/2019/06/28/《Effective OC 2.0》第三章 接口与 API 设计 总结/" itemprop="url">《Effective OC 2.0》第三章 接口与 API 设计 总结</a></h1>
         
 
         <div class="post-meta">
@@ -589,12 +997,12 @@ Apple 保留了两个字母的前缀，所以我们自己的项目应该是三�
           OC中的内存空间分配
 
 
-所有 Objective-C 对象创建之后的内存都分配在堆（heap sapce）中，不能在栈（stack）中分配对象1NSString *someString = @"str";
+所有 Objective-C 对象创建之后的内存都分配在堆（heap sapce）中，不能在栈（stack）中分配对象。1NSString *someString = @"str";
 
 
 
 
- 声明了一个 sonmeString 的变量，这个变量分配在堆中的某块内存中；类型是
+ 声明了一个 sonmeString 的变量，这个变量分配在堆中的某块内存中；类型
           ...
           <!--noindex-->
           <div class="post-button text-center">
@@ -682,7 +1090,7 @@ Apple 保留了两个字母的前缀，所以我们自己的项目应该是三�
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-count">6</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
