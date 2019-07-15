@@ -243,7 +243,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/07/07/《Effective OC 2.0》第六章 块(Block)和大中枢派发(GCD) 总结/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/20/《Effective OC 2.0》第七章 系统框架 总结/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="XV~">
@@ -262,7 +262,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2019/07/07/《Effective OC 2.0》第六章 块(Block)和大中枢派发(GCD) 总结/" itemprop="url">《Effective OC 2.0》第六章 块(Block)和大中枢派发(GCD) 总结</a></h1>
+                <a class="post-title-link" href="/2019/06/20/《Effective OC 2.0》第七章 系统框架 总结/" itemprop="url">《Effective OC 2.0》第七章 系统框架 总结</a></h1>
         
 
         <div class="post-meta">
@@ -274,8 +274,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-07-07T17:30:12+08:00">
-                2019-07-07
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-06-20T17:30:12+08:00">
+                2019-06-20
               </time>
             
 
@@ -314,16 +314,16 @@
       
         
           
-          理解块(Block)的概念
+          熟悉系统框架
 
 
-默认情况 Block 捕获的变量是不可以在其内部修改的，如果加上 __block 关键字，这样就可以修改了。
-self 也是个对象，Block 捕获的时候也会将其持有。如果 self 所指的那个对象同时也持有了 Block ,那么就会出现循环引用。
-在 Block 直
+静态库：
+
+静态库即静态链接库（Windows 下的 .lib，Linux 和 Mac 下的 .a）。之所以叫做静态，是因为静态库在编译的时候会被直接拷贝一份，复制到目标程序里，这段代码在目标程序里就不会再改变了。静态库的好处很明显，编译完成之后，库文件实际上就没有作用了。目标程序
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2019/07/07/《Effective OC 2.0》第六章 块(Block)和大中枢派发(GCD) 总结/#more" rel="contents">
+            <a class="btn" href="/2019/06/20/《Effective OC 2.0》第七章 系统框架 总结/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -374,7 +374,7 @@ self 也是个对象，Block 捕获的时候也会将其持有。如果 self 所
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/07/03/《Effective OC 2.0》第五章 内存管理 总结/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/01/《Effective OC 2.0》第六章 块(Block)和大中枢派发(GCD) 总结/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="XV~">
@@ -393,7 +393,7 @@ self 也是个对象，Block 捕获的时候也会将其持有。如果 self 所
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2019/07/03/《Effective OC 2.0》第五章 内存管理 总结/" itemprop="url">《Effective OC 2.0》第五章 内存管理 总结</a></h1>
+                <a class="post-title-link" href="/2019/06/01/《Effective OC 2.0》第六章 块(Block)和大中枢派发(GCD) 总结/" itemprop="url">《Effective OC 2.0》第六章 块(Block)和大中枢派发(GCD) 总结</a></h1>
         
 
         <div class="post-meta">
@@ -405,8 +405,139 @@ self 也是个对象，Block 捕获的时候也会将其持有。如果 self 所
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-07-03T12:20:20+08:00">
-                2019-07-03
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-06-01T17:30:12+08:00">
+                2019-06-01
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+          理解块(Block)的概念
+
+
+默认情况 Block 捕获的变量是不可以在其内部修改的，如果加上 __block 关键字，这样就可以修改了。
+self 也是个对象，Block 捕获的时候也会将其持有。如果 self 所指的那个对象同时也持有了 Block ,那么就会出现循环引用。
+在 Block 直
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2019/06/01/《Effective OC 2.0》第六章 块(Block)和大中枢派发(GCD) 总结/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/14/《Effective OC 2.0》第五章 内存管理 总结/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="XV~">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="XV~'s Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/05/14/《Effective OC 2.0》第五章 内存管理 总结/" itemprop="url">《Effective OC 2.0》第五章 内存管理 总结</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-05-14T12:20:20+08:00">
+                2019-05-14
               </time>
             
 
@@ -460,7 +591,7 @@ self 也是个对象，Block 捕获的时候也会将其持有。如果 self 所
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2019/07/03/《Effective OC 2.0》第五章 内存管理 总结/#more" rel="contents">
+            <a class="btn" href="/2019/05/14/《Effective OC 2.0》第五章 内存管理 总结/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -511,7 +642,7 @@ self 也是个对象，Block 捕获的时候也会将其持有。如果 self 所
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/07/01/《Effective OC 2.0》第四章 协议与分类 总结/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/28/《Effective OC 2.0》第四章 协议与分类 总结/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="XV~">
@@ -530,7 +661,7 @@ self 也是个对象，Block 捕获的时候也会将其持有。如果 self 所
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2019/07/01/《Effective OC 2.0》第四章 协议与分类 总结/" itemprop="url">《Effective OC 2.0》第四章 协议与分类 总结</a></h1>
+                <a class="post-title-link" href="/2019/04/28/《Effective OC 2.0》第四章 协议与分类 总结/" itemprop="url">《Effective OC 2.0》第四章 协议与分类 总结</a></h1>
         
 
         <div class="post-meta">
@@ -542,8 +673,8 @@ self 也是个对象，Block 捕获的时候也会将其持有。如果 self 所
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-07-01T19:30:45+08:00">
-                2019-07-01
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-04-28T19:30:45+08:00">
+                2019-04-28
               </time>
             
 
@@ -600,7 +731,7 @@ self 也是个对象，Block 捕获的时候也会将其持有。如果 self 所
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2019/07/01/《Effective OC 2.0》第四章 协议与分类 总结/#more" rel="contents">
+            <a class="btn" href="/2019/04/28/《Effective OC 2.0》第四章 协议与分类 总结/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -651,7 +782,7 @@ self 也是个对象，Block 捕获的时候也会将其持有。如果 self 所
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/28/《Effective OC 2.0》第三章 接口与 API 设计 总结/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/15/《Effective OC 2.0》第三章 接口与 API 设计 总结/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="XV~">
@@ -670,7 +801,7 @@ self 也是个对象，Block 捕获的时候也会将其持有。如果 self 所
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2019/06/28/《Effective OC 2.0》第三章 接口与 API 设计 总结/" itemprop="url">《Effective OC 2.0》第三章 接口与 API 设计 总结</a></h1>
+                <a class="post-title-link" href="/2019/04/15/《Effective OC 2.0》第三章 接口与 API 设计 总结/" itemprop="url">《Effective OC 2.0》第三章 接口与 API 设计 总结</a></h1>
         
 
         <div class="post-meta">
@@ -682,8 +813,8 @@ self 也是个对象，Block 捕获的时候也会将其持有。如果 self 所
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-06-28T21:19:31+08:00">
-                2019-06-28
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-04-15T21:19:31+08:00">
+                2019-04-15
               </time>
             
 
@@ -736,7 +867,7 @@ Apple 保留了两个字母的前缀，所以我们自己的项目应该是三�
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2019/06/28/《Effective OC 2.0》第三章 接口与 API 设计 总结/#more" rel="contents">
+            <a class="btn" href="/2019/04/15/《Effective OC 2.0》第三章 接口与 API 设计 总结/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -787,7 +918,7 @@ Apple 保留了两个字母的前缀，所以我们自己的项目应该是三�
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/26/《Effective OC 2.0》第二章 对象、消息、运行期 总结/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/02/《Effective OC 2.0》第二章 对象、消息、运行期 总结/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="XV~">
@@ -806,7 +937,7 @@ Apple 保留了两个字母的前缀，所以我们自己的项目应该是三�
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2019/06/26/《Effective OC 2.0》第二章 对象、消息、运行期 总结/" itemprop="url">《Effective OC 2.0》第二章 对象、消息、运行期 总结</a></h1>
+                <a class="post-title-link" href="/2019/04/02/《Effective OC 2.0》第二章 对象、消息、运行期 总结/" itemprop="url">《Effective OC 2.0》第二章 对象、消息、运行期 总结</a></h1>
         
 
         <div class="post-meta">
@@ -818,8 +949,8 @@ Apple 保留了两个字母的前缀，所以我们自己的项目应该是三�
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-06-26T12:19:31+08:00">
-                2019-06-26
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-04-02T12:19:31+08:00">
+                2019-04-02
               </time>
             
 
@@ -872,7 +1003,7 @@ Apple 保留了两个字母的前缀，所以我们自己的项目应该是三�
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2019/06/26/《Effective OC 2.0》第二章 对象、消息、运行期 总结/#more" rel="contents">
+            <a class="btn" href="/2019/04/02/《Effective OC 2.0》第二章 对象、消息、运行期 总结/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -923,7 +1054,7 @@ Apple 保留了两个字母的前缀，所以我们自己的项目应该是三�
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/24/《Effective OC 2.0》第一章 熟悉Objective-C 总结/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/24/《Effective OC 2.0》第一章 熟悉Objective-C 总结/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="XV~">
@@ -942,7 +1073,7 @@ Apple 保留了两个字母的前缀，所以我们自己的项目应该是三�
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2019/06/24/《Effective OC 2.0》第一章 熟悉Objective-C 总结/" itemprop="url">《Effective OC 2.0》第一章 熟悉Objective-C 总结</a></h1>
+                <a class="post-title-link" href="/2019/03/24/《Effective OC 2.0》第一章 熟悉Objective-C 总结/" itemprop="url">《Effective OC 2.0》第一章 熟悉Objective-C 总结</a></h1>
         
 
         <div class="post-meta">
@@ -954,8 +1085,8 @@ Apple 保留了两个字母的前缀，所以我们自己的项目应该是三�
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-06-24T23:39:59+08:00">
-                2019-06-24
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-03-24T23:39:59+08:00">
+                2019-03-24
               </time>
             
 
@@ -1006,7 +1137,7 @@ Apple 保留了两个字母的前缀，所以我们自己的项目应该是三�
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2019/06/24/《Effective OC 2.0》第一章 熟悉Objective-C 总结/#more" rel="contents">
+            <a class="btn" href="/2019/03/24/《Effective OC 2.0》第一章 熟悉Objective-C 总结/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1090,7 +1221,7 @@ Apple 保留了两个字母的前缀，所以我们自己的项目应该是三�
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-count">7</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>

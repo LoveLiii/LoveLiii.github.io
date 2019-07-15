@@ -1,0 +1,737 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon32*32.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon16*16.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="iOS,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="理解块(Block)的概念   默认情况 Block 捕获的变量是不可以在其内部修改的，如果加上 __block 关键字，这样就可以修改了。 self 也是个对象，Block 捕获的时候也会将其持有。如果 self 所指的那个对象同时也持有了 Block ,那么就会出现循环引用。 在 Block 直接访问成员变量和通过 self. 访问是等效的。 Block 本身也是个对象，所以在堆上的 Bloc">
+<meta name="keywords" content="iOS">
+<meta property="og:type" content="article">
+<meta property="og:title" content="《Effective OC 2.0》第六章 块(Block)和大中枢派发(GCD) 总结">
+<meta property="og:url" content="http://yoursite.com/2019/06/01/《Effective OC 2.0》第六章 块(Block)和大中枢派发(GCD) 总结/index.html">
+<meta property="og:site_name" content="XV~&#39;s Blog">
+<meta property="og:description" content="理解块(Block)的概念   默认情况 Block 捕获的变量是不可以在其内部修改的，如果加上 __block 关键字，这样就可以修改了。 self 也是个对象，Block 捕获的时候也会将其持有。如果 self 所指的那个对象同时也持有了 Block ,那么就会出现循环引用。 在 Block 直接访问成员变量和通过 self. 访问是等效的。 Block 本身也是个对象，所以在堆上的 Bloc">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-07-13T06:59:59.337Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="《Effective OC 2.0》第六章 块(Block)和大中枢派发(GCD) 总结">
+<meta name="twitter:description" content="理解块(Block)的概念   默认情况 Block 捕获的变量是不可以在其内部修改的，如果加上 __block 关键字，这样就可以修改了。 self 也是个对象，Block 捕获的时候也会将其持有。如果 self 所指的那个对象同时也持有了 Block ,那么就会出现循环引用。 在 Block 直接访问成员变量和通过 self. 访问是等效的。 Block 本身也是个对象，所以在堆上的 Bloc">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/06/01/《Effective OC 2.0》第六章 块(Block)和大中枢派发(GCD) 总结/">
+
+
+
+
+
+  <title>《Effective OC 2.0》第六章 块(Block)和大中枢派发(GCD) 总结 | XV~'s Blog</title>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?4ffaf084d0e35e2a5421f64bc3bf240e";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">XV~'s Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">道阻且长，行则将至</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/01/《Effective OC 2.0》第六章 块(Block)和大中枢派发(GCD) 总结/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="XV~">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="XV~'s Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">《Effective OC 2.0》第六章 块(Block)和大中枢派发(GCD) 总结</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-06-01T17:30:12+08:00">
+                2019-06-01
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3>理解块(Block)的概念</h3>
+
+<ul>
+<li>默认情况 Block 捕获的变量是不可以在其内部修改的，如果加上 __block 关键字，这样就可以修改了。</li>
+<li>self 也是个对象，Block 捕获的时候也会将其持有。如果 self 所指的那个对象同时也持有了 Block ,那么就会出现循环引用。</li>
+<li>在 Block 直接访问成员变量和通过 self. 访问是等效的。</li>
+<li>Block 本身也是个对象，所以在堆上的 Block 也是有引用计数的。</li>
+<li>全局的 Block 不会捕捉任何状态，运行时也无须有状态来参与，在编译器已经完全确定了内存空间。<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">void</span> (^block)() = ^ &#123;</span><br><span class="line">	<span class="built_in">NSLog</span>(<span class="string">@"this is a block"</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h3>多用派发队列，少用同步锁</h3>
+
+<ul>
+<li><p>如果多个线程同时执行同一份代码，有时可能会有问题。在 GCD 出现之前，有两种办法：</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//第一种使用内置的同步块（synchornization block）</span></span><br><span class="line">- (<span class="keyword">void</span>)synchornizedMethod &#123;</span><br><span class="line">	@synchornized(<span class="keyword">self</span>) &#123;</span><br><span class="line">		<span class="comment">//safe</span></span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//然而滥用 @synchornized(self) 会降低代码效率。</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//另一个办法则是直接使用 NSLock 对象:</span></span><br><span class="line">_lock = [<span class="built_in">NSLock</span> alloc] init];</span><br><span class="line">- (<span class="keyword">void</span>)synchornizedMethod &#123;</span><br><span class="line">	[_lock lock];</span><br><span class="line">	<span class="comment">//Safe</span></span><br><span class="line">	[_lock unlock];</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//也可以使用 NSRecursiveLock 这种“递归锁”，线程能多次持有该锁，而不会出现死锁。</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>异步串行队列不一定比同步串行性能更好，因为执行异步派发时，需要拷贝块，如果拷贝块的时间明显超过执行块的司机，那么效率更低</p>
+</li>
+<li><p>将同步和异步派发结合起来，可以实现与普通加锁机制一样的同步行为，而这么做却不会阻塞异步派发的线程。</p>
+</li>
+<li><p>使用同步队列及 栅栏 (barrier) ,可以令同步行为更加高效。</p>
+</li>
+</ul>
+<h3>多用 GCD ,少用 performSelector 系列方法</h3>
+
+<ul>
+<li>performSelector 由于不知道方法返回值是不是应该释放，所以在内存管理方面容易有疏失。</li>
+<li>performSelector 系列方法能处理的 Selector 太过局限，返回值及方法参数个数都受到限制。</li>
+<li>如果想把方法放在另一个线程执行，那么最好不要用 performSelector 相关方法，而是应该把任务封装到 Block 里，然后使用 GCD 机制相关方法来实现。</li>
+</ul>
+<h3>GCD 和 操作队列（NSOperationQueue）的使用时机</h3>
+
+<ul>
+<li>GCD 是纯 C 的 API ,而 NSOperationQueue 则是 OC 对象。</li>
+<li>使用 NSOperation 有几个好处：<br>1, 取消某个操作；<br>2, 制定操作间的依赖关系；<br>3, 可以使用 KVO 机制监听 NSOperation 对象的属性；<br>4，指定操作的优先级。</li>
+</ul>
+<h3>dispatch group</h3>
+
+<ul>
+<li>一系列任务可以归入一个 dispatch group 中，开发者可以在这组任务执行完毕时获得通知。</li>
+<li>通过 dispatch group 并发派送任务里同时执行多项任务，此时 GCD 会根据系统资源状况来调度这些并发执行的任务。</li>
+<li>未必总是要使用 dispatch group ，但是 dispatch_apply 会持续阻塞，直到所有任务都执行完毕为止，如果要在后台执行任务，则应使用 dispatch group，否则可能导致死锁。</li>
+</ul>
+<h3>dispatch_once</h3>
+
+<ul>
+<li>经常需要编写<strong>只需一次执行的线程安全代码</strong>。通过 GCD 所提供的 dispatch_once 能很容易实现。</li>
+<li>标记应该声明在 static 或 global 作用域中，这样的话，在把只需只需一次的块传给 dispatch_once 函数时，传进去的标记也是相同的。</li>
+</ul>
+<h3>dispatch_get_current_queue</h3>
+
+<ul>
+<li>dispatch_get_current_queue 函数的行为常常与开发者所预期的不同，此函数已经被废弃，只应做调试之用。</li>
+<li>由于派发队列时按层级来组织的，所以无法用单个队列对象来描述“当前队列这一概念”。</li>
+<li>dispatch_get_current_queue 用于解决由不可重入得代码所引发的死锁，然而通常也能改用“<strong>队列特定数据</strong>”解决。</li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/iOS/" rel="tag"># iOS</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/05/14/《Effective OC 2.0》第五章 内存管理 总结/" rel="next" title="《Effective OC 2.0》第五章 内存管理 总结">
+                <i class="fa fa-chevron-left"></i> 《Effective OC 2.0》第五章 内存管理 总结
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/06/20/《Effective OC 2.0》第七章 系统框架 总结/" rel="prev" title="《Effective OC 2.0》第七章 系统框架 总结">
+                《Effective OC 2.0》第七章 系统框架 总结 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">XV~</p>
+              <p class="site-description motion-element" itemprop="description">记录 iOS 开发日常&心得</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-name">标签</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#null"><span class="nav-number">1.</span> <span class="nav-text">理解块(Block)的概念</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#null"><span class="nav-number">2.</span> <span class="nav-text">多用派发队列，少用同步锁</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#null"><span class="nav-number">3.</span> <span class="nav-text">多用 GCD ,少用 performSelector 系列方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#null"><span class="nav-number">4.</span> <span class="nav-text">GCD 和 操作队列（NSOperationQueue）的使用时机</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#null"><span class="nav-number">5.</span> <span class="nav-text">dispatch group</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#null"><span class="nav-number">6.</span> <span class="nav-text">dispatch_once</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#null"><span class="nav-number">7.</span> <span class="nav-text">dispatch_get_current_queue</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">XV~</span>
+
+  
+</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
